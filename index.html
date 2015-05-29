@@ -1,110 +1,303 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head profile="http://www.w3.org/2005/10/profile">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="./favicon.ico">
+  <head>
+    <link href="//cartodb-libs.global.ssl.fastly.net/cartodbui/assets/3.13.18/favicons/favicon.ico?1426081044" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+    <title>CartoDB · Sustainable Energy Rank</title>
+    <meta name="description" content="Sustainable Energy Rank created by googledata in CartoDB">
+    <meta name="keywords" content="Sustainable, Energy, Rank, datasets, maps, data visualization, spatial data, geospatial, cartodb">
+    <meta name="author" content="googledata">
+    <meta charset='utf-8' />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 
-    <title>Starter Template for Bootstrap</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/themes/css/cartodb.css" />
+    <meta property="og:title" content="CartoDB · Sustainable Energy Rank" />
+    <meta property="og:description" content="Sustainable Energy Rank created by googledata in CartoDB" />
+    <meta property="og:type" content="visualization" />
+    <meta property="og:url" content="https://googledataorg.cartodb.com/u/googledata/viz/e11e398c-060c-11e5-b348-42010a14cb63/embed_map" />
+    <meta property="og:image" content="//cartodb-libs.global.ssl.fastly.net/cartodbui/assets/3.13.18/images/layout/cartofante_blue.png" />
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@cartodb">
+    <meta name="twitter:creator" content="@cartodb">
+    <meta name="twitter:title" content="CartoDB · Sustainable Energy Rank">
+    <meta name="twitter:description" content="Sustainable Energy Rank created by googledata in CartoDB">
+    <meta name="twitter:image" content="//cartodb-libs.global.ssl.fastly.net/cartodbui/assets/3.13.18/images/layout/cartofante_blue.png">
+    <meta name="twitter:url" content="https://googledataorg.cartodb.com/u/googledata/viz/e11e398c-060c-11e5-b348-42010a14cb63/embed_map" />
+
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->
+  <link href="//cartodb-libs.global.ssl.fastly.net/cartodbui/assets/3.13.18/stylesheets/cartodb.css" media="screen" rel="stylesheet" type="text/css" />
+
+  <style type="text/css">
+  html, body, #map {height: 100%; padding: 0; margin: 0;}
+  /* footer */
+  .cartodb-text {position:absolute; display:none; bottom:0; left:0; right:0; margin:0; padding:0 10px; background:white; font:normal 11px "Helvetica",Arial; color:#999999; border-top:1px solid #CCC; border-top:1px solid rgba(0,0,0,0); box-shadow:rgba(0,0,0,0.6) 0 0 1px 0; -webkit-box-shadow:rgba(0,0,0,0.6) 0 0 1px 0; -moz-box-shadow:rgba(0,0,0,0.6) 0 0 1px 0; -o-box-shadow:rgba(0,0,0,0.6) 0 0 1px 0; line-height:29px; z-index:2; }
+  .cartodb-text a {color:#397DB8; text-decoration:underline;}
+  .cartodb-text a.user { text-decoration:none }
+  .cartodb-text img {display:inline-block; *display:inline; vertical-align:middle; border-radius:16px; -webkit-border-radius:16px; -moz-border-radius:16px; zoom:1; text-decoration:none }
+  .cartodb-text span.username { text-decoration:underline }
+  /* likes */
+  .cartodb-text .like { float: right; display:inline-block; *display:inline; vertical-align:middle; zoom:1; text-decoration: none; color: #666; }
+  .cartodb-text .like .icon { display:inline-block; *display:inline; vertical-align:middle; zoom:1; position:relative; top: -1px; width: 14px; height: 14px; background-image:url('//cartodb-libs.global.ssl.fastly.net/cartodbui/assets/3.13.18/images/layout/heart.png'); background-size: 14px 14px; -webkit-transform: scale(.7); -ms-transform: scale(.7); transform: scale(.7);  }
+  .cartodb-text .like.is-highlighted .icon { background-image:url('//cartodb-libs.global.ssl.fastly.net/cartodbui/assets/3.13.18/images/layout/heart_highlighted.png'); background-size: 14px 14px; -webkit-transform: scale(.7); -ms-transform: scale(.7); transform: scale(.7); }
+  .cartodb-text .like .icon.is-animated { -ms-animation-duration: 400ms; -webkit-animation-duration: 400ms; animation-duration: 400ms; -webkit-animation-fill-mode: both; -ms-animation-fill-mode: both; animation-fill-mode: both; animation-timing-function: ease-in; -webkit-animation-timing-function: ease-in; } 
+  @-webkit-keyframes pulse { 0% { -webkit-transform: scale(.7); -ms-transform: scale(.7); transform: scale(.7); } 25% { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); } 50% { -webkit-transform: scale(.5); -ms-transform: scale(.5); transform: scale(.5); } 75% { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); } 100% { -webkit-transform: scale(.7); -ms-transform: scale(.7); transform: scale(.7); } }
+  @keyframes pulse { 0% { -webkit-transform: scale(.7); -ms-transform: scale(.7); transform: scale(.7); } 25% { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); } 50% { -webkit-transform: scale(.5); -ms-transform: scale(.5); transform: scale(.5); } 75% { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); } 100% { -webkit-transform: scale(.7); -ms-transform: scale(.7); transform: scale(.7); } }
+  .cartodb-text .like .icon.is-pulsating { -webkit-animation-name: pulse; -ms-animation-name: pulse; animation-name: pulse; }
+
+  /* not supported dialog */ 
+  #not_supported_dialog {position:absolute; width:356px; height:213px; top:50%; left:50%; margin-top:-107px; margin-left:-178px; padding:0; background-color:#FFF; text-align:center; font-family:'Helvetica', Arial; color:#666666; z-index:10000;}
+  #not_supported_dialog h2 {display:inline-block; width:77px; margin:30px 0 0; padding-bottom:16px; font-size:13px; font-weight:bold; border-bottom:1px solid #D9D9D9; vertical-align:top; zoom:1; *display:inline;}
+  #not_supported_dialog p {display:block; padding:0 40px; margin:12px 0 0; font-size:15px;}
+  #not_supported_dialog ul {position:absolute; bottom:0; left:0; right:0; display:block; margin:0; padding:0; list-style:none; border-top:1px solid #D9D9D9;}
+  #not_supported_dialog ul li {float:left; margin:0; padding:0; border-right:1px solid #D9D9D9;}
+  #not_supported_dialog ul li a {display:block; width:118px; height:74px; background-repeat:no-repeat; background-position:center center; font-size:0; line-height:0; text-indent:-9999px;}
+  #not_supported_dialog ul li.last {border:none;}
+  #not_supported_dialog a.safari {background-image:url('//cartodb-libs.global.ssl.fastly.net/cartodbui/assets/3.13.18/images/layout/safari.png');}
+  #not_supported_dialog a.chrome {background-image:url('//cartodb-libs.global.ssl.fastly.net/cartodbui/assets/3.13.18/images/layout/chrome.png');}
+  #not_supported_dialog a.firefox {background-image:url('//cartodb-libs.global.ssl.fastly.net/cartodbui/assets/3.13.18/images/layout/firefox.png');}
 
 
-    <link rel="icon" type="image/png" href="./favicon.png">
+  :-webkit-full-screen .cartodb-map-wrapper { height: 100%!important; }
+  :-moz-full-screen .cartodb-map-wrapper { height: 100%!important; }
+  :-ms-fullscreen .cartodb-map-wrapper { height: 100%!important; }
+  :fullscreen .cartodb-map-wrapper { height: 100%!important; }
+
+    /* Styles showing up new cartodb text */
+      .cartodb-map-wrapper {bottom:30px!important;}
+      .cartodb-text {display:block;}
+
+    /* Custom for toggle embed*/
+ .list-group {
+  padding-left: 0;
+  margin-bottom: 20px;
+}
+
+ol, ul {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+  z-index: 2;
+  color: #fff;
+  background-color: #888888;
+  border-color: #888888;
+}
+
+.list-group-item:first-child {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: 5px 15px;
+  margin-bottom: -1px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.list-group-item {
+  text-decoration: none;
+
+}
+
+a.list-group-item, .leaflet-container a {
+  color: #888888;
+}
+
+a.list-group-item:focus, a.list-group-item:hover {
+  color: #555;
+  text-decoration: none;
+  background-color: #f5f5f5;
+}
+
+
+</style>
+
+
+
+
+    <!--[if lt IE 9]>
+      <script src="//cartodb-libs.global.ssl.fastly.net/cartodbui/assets/3.13.18/javascripts/modernizr.js" type="text/javascript"></script>
+    <![endif]-->
   </head>
-
-  <style>
-    html, body, #container {
-      height: 100%;
-      width: 100%;
-      overflow: hidden;
-    }
-
-   /* body {
-      padding-top: 50px;
-    }*/
-
-    #map {
-      width: auto;
-      height: 100%;
-    }
-
-    div.cartodb-share a {
-      box-sizing:content-box;
-    }
-
-    .list-group {
-      position: absolute;
-      top: 32px;
-      right: 18px;
-      width: 248px;
-      webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 0 4px 2px;
-      -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 0 4px 2px;
-      box-shadow: rgba(0, 0, 0, 0.2) 0 0 4px 2px;
-    }
-
-  </style>
-
-  <body>
-
-
-
-    <div id="container">
-      
-      <div id="map">
-      </div>
-      <ul class="list-group">
+  <body class="
+  embed-map
+">
+    
+    <div id="map"></div>
+    
+    <div id="not_supported_dialog" style="display: none">
+      <h2>CartoDB</h2>
+      <p>This visualization only works in modern browsers. Upgrade yours and enjoy.</p>
+      <ul>
+        <li><a href="http://www.apple.com/safari/" class="safari">Safari</a></li>
+        <li><a href="https://www.google.com/chrome/" class="chrome">Chrome</a></li>
+        <li class="last"><a href="http://www.mozilla.org/en-US/firefox/all/‎" class="firefox">Firefox</a></li>
       </ul>
-    </div><!-- /.container -->
+    </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-     <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-    <script src="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.13/cartodb.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script>
+    <div class="cartodb-text">
+      Map created by
+      <a class="user" href="https://googledataorg.cartodb.com/u/googledata/maps?utm_source=Footer_Link&utm_medium=referral&utm_campaign=Embed_v1&utm_content=googledata" target="_blank">
+          <img src="//cartodb-libs.global.ssl.fastly.net/cartodbui/assets/unversioned/images/avatars/avatar_planet_orange.png" width="16" height="16" alt="googledata" title="googledata" />
+        <span class="username">googledata</span>
+      </a>
+
+      <a href="#like" class="like js-like">
+        <span class="icon"></span>
+        <span class="counter">0</span>
+      </a>
+
+    </div>
+
+    
+  <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false&v=3.12&AIzaSyBOtkLzaP28BYK0q-DWNwXVTP4jdMv-8rU"></script>
+
+<script src="//cartodb-libs.global.ssl.fastly.net/cartodbui/assets/3.13.18/javascripts/cdb.js" type="text/javascript"></script>
+<script src="//cartodb-libs.global.ssl.fastly.net/cartodbui/assets/3.13.18/javascripts/public_like.js" type="text/javascript"></script>
+
+<script>
+
+  // Get url parameters
+  function get_url_params(conversion) {
+    conversion = conversion || {};
+
+    var tokens = location.search.slice(1).split('&');
+    var params = {};
+
+    for (var i = 0; i < tokens.length; ++i) {
+
+      var tk = tokens[i].split('=');
+      var fn = conversion[tk[0]] || function(v) { return v };
+
+      if (tk.length === 2) {
+        params[tk[0]] = fn(decodeURIComponent(tk[1]));
+      }
+    }
+
+    return params;
+  }
+
+  // Manage errors
+  function manageError(err, layer) {
+    if(layer && layer.get('type') === 'torque') {
+      $('#not_supported_dialog').show();
+      // hide all the overlays
+      var overlays = this.getOverlays()
+      for (var i = 0; i < overlays.length; ++i) {
+        var o = overlays[i];
+        o.hide && o.hide();
+      }
+    }
+  }
+
+  // Send stats
+  function stats() {
+    var browser;
+    var ua = navigator.userAgent;
+    var checks = [
+        ['MSIE 11.0', 'ms11'],
+        ['MSIE 10.0', 'ms10'],
+        ['MSIE 9.0', 'ms9'],
+        ['MSIE 8.0', 'ms8'],
+        ['MSIE 7.0','ms7'],
+        ['Chrome', 'chr'],
+        ['Firefox', 'ff'],
+        ['Safari', 'ff']
+    ]
+    for(var i = 0; i < checks.length && !browser; ++i) {
+      if(ua.indexOf(checks[i][0]) !== -1) browser = checks[i][1];
+    }
+    browser = browser || 'none';
+    cartodb.core.Profiler.metric('cartodb-js.embed.' + browser).inc();
+  }
+
+  // On load...
+  $(function(){
+
+    var bool_fn = function(v) { return v == 'true' };
+    var is_custom_install = false;
+    var logo_fn  = function(v) { return ( false || is_custom_install ) ? true : v == 'true' };
+    var layer_fn = function(v) {
+      if(!v || !v.length) {
+          return null;
+      }
+
+      return _.map(v.split("|"), function(v) {
+        return { visible: !!parseInt(v, 10) }
+      });
+
+    };
+
+    var opt = get_url_params({
+      'force_mobile': bool_fn,
+      'search':       bool_fn,
+      'title':        bool_fn,
+      'description':  bool_fn,
+      'shareable':    bool_fn,
+      'fullscreen':   bool_fn,
+      'cartodb_logo': logo_fn,
+      'scrollwheel':  bool_fn,
+      'sublayer_options': layer_fn,
+      'layer_selector': bool_fn,
+      'legends': bool_fn
+    });
 
 
 
-    // var map = new L.Map('map', { 
-    //   center: [20,0],
-    //   zoom: 2
-    // });
 
-    var map = new google.maps.Map(document.getElementById('map'), {
-                    center: new google.maps.LatLng(20, 0),
-                    zoom: 2,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                });
+    opt.mobile_layout = true;
 
-    // L.tileLayer('https://dnv9my2eseobd.cloudfront.net/v3/cartodb.map-4xtxp73f/{z}/{x}/{y}.png', {
-    //   attribution: 'Mapbox <a href="http://mapbox.com/about/maps" target="_blank">Terms &amp; Feedback</a>'
-    // }).addTo(map);
+    cartodb.config.set({
+      cartodb_attributions: "CartoDB <a href='http://cartodb.com/attributions?utm_source=Footer_Link&utm_medium=referral&utm_campaign=Embed_v1&utm_content=Attributions&utm_term=googledata' target='_blank'>attribution</a>",
+      cartodb_logo_link: "http://www.cartodb.com?utm_source=Footer_Link&utm_medium=referral&utm_campaign=Embed_v1&utm_content=Logo"
+    })
 
-    //var googleLayer = new L.Google('ROADMAP').addTo(map);
+    var loadingTime  = cartodb.core.Profiler.metric('cartodb-js.embed.time_full_loaded').start();
+    var visReadyTime = cartodb.core.Profiler.metric('cartodb-js.embed.time_vis_loaded').start();
 
-    var layerUrl = 'https://googledataorg.cartodb.com/u/googledata/api/v2/viz/e11e398c-060c-11e5-b348-42010a14cb63/viz.json';
+    var vizJSON = 'https://googledataorg.cartodb.com/u/googledata/api/v2/viz/e11e398c-060c-11e5-b348-42010a14cb63/viz.json';
 
 
-    // cartodb.createVis('map', layerUrl,{
-    //   shareable:true
-    // })
-    //   .done(function(vis, layers) {
-    // });
+    cartodb.createVis('map',vizJSON, opt, function(vis) {
+      visReadyTime.end();
+      vis.on('load', function() {
+        loadingTime.end();
+      });
+
+      var like = new cdb.open.LikeView({ 
+        el: $(".js-like"),
+        auto_fetch: false,
+        model: new cdb.open.Like({ vis_id: "e11e398c-060c-11e5-b348-42010a14cb63", likes: 0 })
+      });
+
+      window.vis = vis;
+
+      // fixes default position of the overlays
+      setTimeout(function() {
+        $(window).trigger("map_resized");
+      }, 400);
+      // some stats
+      stats();
+    })
+    .on('done', function(vis,layers) {
+      // Set max zoom
+      vis.map.set({
+        minZoom: 1,
+        maxZoom: 5
+      });
+
+      var layer = layers[1];
+
+      $('.cartodb-legend-stack').prepend('<ul class="list-group"></ul>');
 
 
-    cartodb.createLayer(map, layerUrl)
-      .addTo(map)
-      .on('done', function(layer) {
-        console.log(layer);
-        layer.layers.forEach(function(subLayer,i) {
-          var name = subLayer.layer_name;
-          $('.list-group').append('<a href="#" class="list-group-item">' + name + '</a>')
-        })
-
+      layer.layers.forEach(function(subLayer,i) {
+        var name = subLayer.layer_name;
+        $('.list-group').append('<a href="#" class="list-group-item">' + name + '</a>')
+      });
 
         $('.list-group a').first().addClass('active');
 
@@ -147,14 +340,48 @@
           layer.getSubLayer(v).show();
         }
 
-        // console.log(layer.getSubLayer(0));
-        // layer.getSubLayer(1).hide();
-        // layer.getSubLayer(2).hide();
-        // layer.getSubLayer(0).hide();
-      }).on('error', function() {
-        //log the error
-      });
 
+    })
+    .on('error', manageError);
+  });
+
+  //<!-- load stats -->
+    if (location.protocol.indexOf('https') === -1) {
+      jQuery.getScript('//cartodb-libs.global.ssl.fastly.net/cartodbui/assets/3.13.18/javascripts/statsc.js', function(ready) {
+        statsc.connect('http://s.cartodb.net:80/');
+        cartodb.core.Profiler.backend(function () {
+          statsc.send.apply(statsc, arguments);
+        })
+        // stop sending stats after 11 seconds
+        // statsc send stats in 5 secs interval so allow to send at least twice
+        setTimeout(function() {
+          cartodb.core.Profiler.backend(null);
+        }, 11*1000);
+      })
+    }
+
+</script>
+
+  <script>
+    window._trackJs = {
+      enabled: true,
+      application: 'vzeuvy3koiv3xsukyffu'
+    };
+  </script>
+  <script type="text/javascript" src="//d2zah9y47r7bi2.cloudfront.net/releases/current/tracker.js" data-token="cf7a7cd8411140689ea94e92d9fba842"></script>
+
+
+    <script type="text/javascript">
+      var _gaq = _gaq || []; 
+      _gaq.push(['_setAccount', 'UA-20934186-10']);
+      _gaq.push(['_setDomainName', 'cartodb.com']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();
     </script>
+
+
+
   </body>
 </html>
