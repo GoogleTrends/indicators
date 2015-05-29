@@ -10,19 +10,19 @@
     <link rel="icon" href="./favicon.ico">
 
     <title>Starter Template for Bootstrap</title>
-
-    <link rel="stylesheet" href="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/themes/css/cartodb.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/themes/css/cartodb.css" />
+
 
     <link rel="icon" type="image/png" href="./favicon.png">
   </head>
 
   <style>
-/*    html, body, #container {
+    html, body, #container {
       height: 100%;
       width: 100%;
       overflow: hidden;
-    }*/
+    }
 
    /* body {
       padding-top: 50px;
@@ -30,32 +30,35 @@
 
     #map {
       width: auto;
-      height: 500px;
+      height: 100%;
+    }
+
+    div.cartodb-share a {
+      box-sizing:content-box;
+    }
+
+    .list-group {
+      position: absolute;
+      top: 32px;
+      right: 18px;
+      width: 248px;
+      webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 0 4px 2px;
+      -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 0 4px 2px;
+      box-shadow: rgba(0, 0, 0, 0.2) 0 0 4px 2px;
     }
 
   </style>
 
   <body>
 
-    <div class="container">
-      <h3>Which Countries Care About Which SDG?</h3>
-      <p>Click dropdown menu to explore the data. This map shows countries ranked by normalized Google search volumes
-for each issue over past 12 months</p>
-      <div class="col-md-3">
-        <form>
-          <div class="form-group">
-            <select id="selector" class="form-control" >
-            </select>
-          </div>
-        </form>
-      </div>
-    </div>
+
 
     <div id="container">
       
       <div id="map">
       </div>
-
+      <ul class="list-group">
+      </ul>
     </div><!-- /.container -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -83,7 +86,15 @@ for each issue over past 12 months</p>
 
     //var googleLayer = new L.Google('ROADMAP').addTo(map);
 
-    var layerUrl = 'https://srogers.cartodb.com/api/v2/viz/2bde27bc-0576-11e5-ba27-0e4fddd5de28/viz.json';
+    var layerUrl = 'https://googledataorg.cartodb.com/u/googledata/api/v2/viz/e11e398c-060c-11e5-b348-42010a14cb63/viz.json';
+
+
+    // cartodb.createVis('map', layerUrl,{
+    //   shareable:true
+    // })
+    //   .done(function(vis, layers) {
+    // });
+
 
     cartodb.createLayer(map, layerUrl)
       .addTo(map)
@@ -91,13 +102,27 @@ for each issue over past 12 months</p>
         console.log(layer);
         layer.layers.forEach(function(subLayer,i) {
           var name = subLayer.layer_name;
-          $('#selector').append('<option value = "' + i + '"">' + name + '</option>')
+          $('.list-group').append('<a href="#" class="list-group-item">' + name + '</a>')
         })
+
+
+        $('.list-group a').first().addClass('active');
 
         var subLayers = layer.getSubLayers();
       
         //hide all but layer 0;  
         hideSubLayers(0);
+
+        $('.list-group a').click(function() {
+          var i = $(this).index();
+          //turn all layers off
+          hideSubLayers();
+          $('.list-group .active').removeClass('active');
+          //turn on this layer
+          showSubLayer(i);
+          $(this).addClass('active');
+        });
+
 
         $('#selector').change(function(){
           console.log('changed');
