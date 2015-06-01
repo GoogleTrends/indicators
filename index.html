@@ -113,6 +113,13 @@ a.list-group-item:focus, a.list-group-item:hover {
 }
 
 
+.header {
+  background-color: #91003F;
+  color: #fff;
+  font-weight: bold;
+  padding: 9px 16px;
+}
+
 </style>
 
 
@@ -145,10 +152,7 @@ a.list-group-item:focus, a.list-group-item:hover {
         <span class="username">googledata</span>
       </a>
 
-      <a href="#like" class="like js-like">
-        <span class="icon"></span>
-        <span class="counter">0</span>
-      </a>
+     
 
     </div>
 
@@ -293,13 +297,14 @@ a.list-group-item:focus, a.list-group-item:hover {
 
       $('.cartodb-legend-stack').prepend('<ul class="list-group"></ul>');
 
+      $('.list-group').append('<li class="header">Click on a goal to see global <br/>search interest on Google</li>')
 
       layer.layers.forEach(function(subLayer,i) {
         var name = subLayer.layer_name;
         $('.list-group').append('<a href="#" class="list-group-item">' + name + '</a>')
       });
 
-        $('.list-group a').first().addClass('active');
+        $('.list-group a').first().next().addClass('active');
 
         var subLayers = layer.getSubLayers();
       
