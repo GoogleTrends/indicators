@@ -299,12 +299,14 @@ a.list-group-item:focus, a.list-group-item:hover {
 
       $('.list-group').append('<li class="header">Click on a goal to see global <br/>search interest on Google</li>')
 
+      console.log(layer.layers);
+
       layer.layers.forEach(function(subLayer,i) {
         var name = subLayer.layer_name;
         $('.list-group').append('<a href="#" class="list-group-item">' + name + '</a>')
       });
 
-        $('.list-group a').first().next().addClass('active');
+        $('.list-group a').first().addClass('active');
 
         var subLayers = layer.getSubLayers();
       
@@ -317,19 +319,12 @@ a.list-group-item:focus, a.list-group-item:hover {
           hideSubLayers();
           $('.list-group .active').removeClass('active');
           //turn on this layer
-          showSubLayer(i);
+          showSubLayer(i-1);
           $(this).addClass('active');
         });
 
 
-        $('#selector').change(function(){
-          console.log('changed');
-          var v = this.value;
-          //turn all layers off
-          hideSubLayers();
-          //turn on this layer
-          showSubLayer(v);
-        });
+        
 
         //hide all sublayers, if v is passed, hide all but v
         function hideSubLayers(v) {
